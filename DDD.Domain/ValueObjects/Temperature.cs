@@ -1,7 +1,4 @@
-﻿using DDD.Domain.Common;
-using System.Runtime.CompilerServices;
-
-
+﻿using DDD.Domain.Helpers;
 
 namespace DDD.Domain.ValueObjects
 {
@@ -38,7 +35,7 @@ namespace DDD.Domain.ValueObjects
         {
             get
             {
-                return CommonFunc.RoundString(Value, DecimalPoint) + " " +  UnitName;   
+                return FloatHelpers.RoundString(Value, DecimalPoint) + " " +  UnitName;   
             }
         }
 
@@ -49,7 +46,7 @@ namespace DDD.Domain.ValueObjects
         {
             get
             {
-                return CommonFunc.RoundString(Value, DecimalPoint) + UnitName;
+                return FloatHelpers.RoundString(Value, DecimalPoint) + UnitName;
             }
         }
 

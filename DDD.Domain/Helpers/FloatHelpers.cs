@@ -4,15 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DDD.Domain.Common
+namespace DDD.Domain.Helpers
 {
-    /// <summary>
-    /// 共通関数
-    /// </summary>
-   public static class CommonFunc
+    public static class FloatHelpers
     {
         /// <summary>
-        /// 数値を丸めて文字列で返す
+        /// Floatを丸めて文字列で返す
         /// </summary>
         /// <param name="value">値</param>
         /// <param name="decimalPoint">小数点の位置</param>
