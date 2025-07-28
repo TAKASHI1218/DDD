@@ -7,9 +7,10 @@ namespace DDD.Domain.ValueObjects
 {
     public sealed class Temperature : ValueObject<Temperature>
     {
-        public const string UnitName = "℃"; // Temperature unit
+        public const string UnitName = "℃";
         public const int DecimalPoint = 2;
 
+        // コンストラクタでfloatの値を設定(読み取り専用)
         public Temperature(float value)
         {
             Value = value;
@@ -24,6 +25,7 @@ namespace DDD.Domain.ValueObjects
             }
         }
 
+        // 異なるインスタンスでも値が同じならイコール
         protected override bool EqualsCore(Temperature other)
         {
             return Value == other.Value;

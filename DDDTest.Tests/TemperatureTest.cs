@@ -17,6 +17,7 @@ public class TemperatureTest
     [TestMethod]
     public void 温度EqualsEquals()
     {
+        // 参照型で同じクラスの異なるインスタンスでもイコールとなる
         var t1 = new Temperature(12.3f);
         var t2 = new Temperature(12.3f);
 

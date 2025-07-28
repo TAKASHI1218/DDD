@@ -1,4 +1,5 @@
-﻿namespace DDD.Domain.ValueObjects
+﻿// ValueOojectの基底クラス
+namespace DDD.Domain.ValueObjects
 {
     public abstract class ValueObject<T> where T : ValueObject<T>
     {
