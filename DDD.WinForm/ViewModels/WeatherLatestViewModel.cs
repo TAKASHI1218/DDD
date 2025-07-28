@@ -10,20 +10,48 @@ using DDD.Domain.ValueObjects;
 
 namespace DDD.Domain.ViewModels
 {
+    /// <summary>
+    /// 画面表示のモデルクラス
+    /// </summary>
     public class WeatherLatestViewModel
     {
+        /// <summary>
+        /// メンバ変数
+        /// </summary>
         private IWeatherRepository _weather;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="weather"></param>
         public WeatherLatestViewModel(IWeatherRepository weather)
         {
             _weather = weather;
         }
 
+        /// <summary>
+        /// エリアID(表示)
+        /// </summary>
         public string? AreaIdText { get; set; } = string.Empty;
+
+        /// <summary>
+        /// データ取得日(表示)
+        /// </summary>
         public string? DataDateText { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 状態(数値)(表示)
+        /// </summary>
         public string? ConditionText { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 温度(表示)
+        /// </summary>
         public string? TemperatureText { get; set; } = string.Empty;
 
+        /// <summary>
+        /// データ取得
+        /// </summary>
         public void Search()
         {
             var entity = _weather.GetLatest(Convert.ToInt32(AreaIdText));
@@ -31,8 +59,7 @@ namespace DDD.Domain.ViewModels
             {
                 DataDateText = entity.DataDate.ToString();
                 ConditionText = entity.Condition.ToString();
-                var temperature = new Temperature(entity.Temperature);
-                TemperatureText = temperature.DisplayValue;
+                TemperatureText = entity.Temperature.DisplayValueWithUnitSpace;
             }
         }
     }

@@ -9,10 +9,16 @@ using System.Threading.Tasks;
 
 namespace DDD.Domain.Date
 {
+    /// <summary>
+    /// SQL取得
+    /// </summary>
     internal class WeatherSQLite
     {
-
-  
+        /// <summary>
+        /// エリアIDのデータを取得
+        /// </summary>
+        /// <param name="areaId">エリアID</param>
+        /// <returns></returns>
         public static DataTable GetLatest(int areaId)
         {
             string sql = @"select DataDate,Condition,Temperature from Weather where AreaId = @AreaId order by DataDate desc LIMIT 1";
@@ -30,7 +36,6 @@ namespace DDD.Domain.Date
             }
 
             return dt;
-      
         }
     }
 }

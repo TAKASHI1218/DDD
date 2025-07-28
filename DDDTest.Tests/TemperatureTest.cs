@@ -11,7 +11,8 @@ public class TemperatureTest
     {
         var t = new Temperature(12.3f);
         Assert.AreEqual(12.3f,t.Value);
-        Assert.AreEqual("12.30 Åé", t.DisplayValue);
+        Assert.AreEqual("12.30 Åé", t.DisplayValueWithUnitSpace);
+        Assert.AreEqual("12.30Åé", t.DisplayValueWithUnit);
     }
 
     [TestMethod]

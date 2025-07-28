@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DDD.Domain.Common
 {
-    public static class CommonConst
-    {
+    //public static class CommonConst
+    //{
 
-        public const string ConnectionString = @"Data Source=C:\Users\t6134\Desktop\DDD\DDD.db;Version=3;";
-    }
+    //    public const string ConnectionString = @"Data Source=C:\Users\t6134\Desktop\DDD\DDD.db;Version=3;";
+    //}
 }

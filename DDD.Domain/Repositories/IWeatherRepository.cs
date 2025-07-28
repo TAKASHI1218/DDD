@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace DDD.Domain.Repositories
 {
+    /// <summary>
+    /// WeatherRepositoryのインターフェース
+    /// </summary>
     public interface IWeatherRepository
     {
         WeatherEntity GetLatest(int areaId);
