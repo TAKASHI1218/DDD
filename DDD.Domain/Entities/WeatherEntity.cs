@@ -2,7 +2,6 @@
 {
     public sealed class WeatherEntity
     {
-
         // 完全コンストラクタパターン
         public WeatherEntity(int areaId, DateTime dataDate, int condition, float temperature)
         {

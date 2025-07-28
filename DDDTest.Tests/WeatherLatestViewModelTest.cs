@@ -29,12 +29,10 @@ public class WeatherLatestViewModelTest
     }
 }
 
-
 internal class WeatherMock : IWeatherRepository
 {
     public WeatherEntity GetLatest(int areaId)
     {
-
         int AreaId = 1;
         DateTime DataDate = Convert.ToDateTime("2018/01/01 12:34:56");
         int Condition = 2;
