@@ -1,4 +1,4 @@
-<Project Sdk="MSTest.Sdk/3.6.4">
+﻿<Project Sdk="MSTest.Sdk/3.6.4">
 
   <PropertyGroup>
     <TargetFramework>net8.0-windows</TargetFramework>
@@ -13,6 +13,10 @@
     <TestingPlatformShowTestsFailure>true</TestingPlatformShowTestsFailure>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.20.72" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DDD.Domain\DDD.Domain.csproj" />

@@ -92,7 +92,7 @@ namespace DDD.Domain.ViewModels
         }
 
         /// <summary>
-        /// データ取得
+        /// データ取得と設定
         /// </summary>
         public void Search()
         {
