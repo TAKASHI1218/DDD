@@ -7,7 +7,7 @@ namespace DDD.Infrastructure.SQLite
     /// <summary>
     /// SQLiteにあるWeahterのクラス
     /// </summary>
-    public class WeatherSQLite:IWeatherRepository
+    public class WeatherSQLite : IWeatherRepository
     {
         /// <summary>
         /// エリアIDをパラメータにしてWeatherEntityオブジェクトを取得
@@ -34,5 +34,11 @@ namespace DDD.Infrastructure.SQLite
                  }
                 ,null);
         }
+
+        public IReadOnlyList<WeatherEntity> GetData()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
