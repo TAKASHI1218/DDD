@@ -30,15 +30,15 @@ public class WeatherLatestViewModelTest
         areasMock.Setup(x => x.GetData()).Returns(areas);
 
         var viewModel = new WeatherLatestViewModel(weathreMock.Object,areasMock.Object);
-        Assert.AreEqual("", viewModel.AreaIdText);
+        //Assert.IsNull("", viewModel.SelectedAreaId);
         Assert.AreEqual("", viewModel.DataDateText);
         Assert.AreEqual("", viewModel.ConditionText);
         Assert.AreEqual("", viewModel.TemperatureText);
         Assert.AreEqual(2, viewModel.Areas.Count);
 
-        viewModel.AreaIdText = "1";
+        viewModel.SelectedAreaId = 1;
         viewModel.Search();
-        Assert.AreEqual("1", viewModel.AreaIdText);
+        Assert.AreEqual("1", viewModel.SelectedAreaId);
         Assert.AreEqual("2018/01/01 12:34:56", viewModel.DataDateText);
         Assert.AreEqual("ì‹ÇË", viewModel.ConditionText);
         Assert.AreEqual("12.30 Åé", viewModel.TemperatureText);

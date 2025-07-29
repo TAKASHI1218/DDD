@@ -35,8 +35,8 @@
             DataDateLabel = new Label();
             ConditionLabel = new Label();
             TemperatureLabel = new Label();
-            AreaIdTextBox = new TextBox();
             LatestButton = new Button();
+            AreasComboBox = new ComboBox();
             SuspendLayout();
             // 
             // label1
@@ -102,13 +102,6 @@
             TemperatureLabel.TabIndex = 6;
             TemperatureLabel.Text = "label7";
             // 
-            // AreaIdTextBox
-            // 
-            AreaIdTextBox.Location = new Point(165, 68);
-            AreaIdTextBox.Name = "AreaIdTextBox";
-            AreaIdTextBox.Size = new Size(150, 31);
-            AreaIdTextBox.TabIndex = 7;
-            // 
             // LatestButton
             // 
             LatestButton.Location = new Point(378, 68);
@@ -119,13 +112,21 @@
             LatestButton.UseVisualStyleBackColor = true;
             LatestButton.Click += LatestButton_Click;
             // 
-            // WeathreLatestViews
+            // AreasComboBox
+            // 
+            AreasComboBox.FormattingEnabled = true;
+            AreasComboBox.Location = new Point(165, 65);
+            AreasComboBox.Name = "AreasComboBox";
+            AreasComboBox.Size = new Size(182, 33);
+            AreasComboBox.TabIndex = 9;
+            // 
+            // WeatherLatestViews
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(AreasComboBox);
             Controls.Add(LatestButton);
-            Controls.Add(AreaIdTextBox);
             Controls.Add(TemperatureLabel);
             Controls.Add(ConditionLabel);
             Controls.Add(DataDateLabel);
@@ -133,7 +134,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Name = "WeathreLatestViews";
+            Name = "WeatherLatestViews";
             Text = "WeatherLatestViews";
             Load += WeathreLatestViews_Load;
             ResumeLayout(false);
@@ -149,7 +150,7 @@
         private Label DataDateLabel;
         private Label ConditionLabel;
         private Label TemperatureLabel;
-        private TextBox AreaIdTextBox;
         private Button LatestButton;
+        private ComboBox AreasComboBox;
     }
 }

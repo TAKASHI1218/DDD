@@ -15,8 +15,11 @@ namespace DDD.Domain.ViewModels
         /// IWeatherRepository
         /// </summary>
         private IWeatherRepository _weather;
-        
-        IAreasRepository _areas;
+
+        /// <summary>
+        /// IAreasRepository
+        /// </summary>
+        private IAreasRepository _areas;
 
         /// <summary>
         /// コンストラクタ引数なし
@@ -25,7 +28,7 @@ namespace DDD.Domain.ViewModels
         /// ③ WeatherLatestViewModel(IWeatherRepository weather) に渡される
         /// ④ _weather にインスタンスが格納される
         /// </summary>
-        public WeatherLatestViewModel():this(new WeatherSQLite(),null)
+        public WeatherLatestViewModel():this(new WeatherSQLite(),new AreasSQLite())
         {
         }
 
@@ -48,14 +51,14 @@ namespace DDD.Domain.ViewModels
         /// <summary>
         /// エリアID(表示)
         /// </summary>
-        private string _areaIdText = string.Empty;
+        private object _selectedAreaId = string.Empty;
 
-        public string AreaIdText
+        public object SelectedAreaId
         {
-            get { return _areaIdText; }
+            get { return _selectedAreaId; }
             set
             {
-                SetProperty(ref _areaIdText, value);
+                SetProperty(ref _selectedAreaId, value);
             }
         }
 
@@ -112,7 +115,7 @@ namespace DDD.Domain.ViewModels
         /// </summary>
         public void Search()
         {
-            var entity = _weather.GetLatest(Convert.ToInt32(AreaIdText));
+            var entity = _weather.GetLatest(Convert.ToInt32(SelectedAreaId));
             if (entity != null)
             {
                 DataDateText = entity.DataDate.ToString();
