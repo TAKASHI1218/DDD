@@ -1,12 +1,5 @@
-﻿using DDD.Domain.Entities;
-using DDD.Domain.Repositories;
-using DDD.Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DDD.Domain.ValueObjects;
+﻿using DDD.Domain.Repositories;
+using DDD.Infrastructure.SQLite;
 
 namespace DDD.Domain.ViewModels
 {
@@ -21,9 +14,20 @@ namespace DDD.Domain.ViewModels
         private IWeatherRepository _weather;
 
         /// <summary>
-        /// コンストラクタ
+        /// コンストラクタ引数なし
+        /// ① WeatherLatestViewModel() が呼ばれる
+        /// ② new WeatherSQLite() が生成される
+        /// ③ WeatherLatestViewModel(IWeatherRepository weather) に渡される
+        /// ④ _weather にインスタンスが格納される
         /// </summary>
-        /// <param name="weather"></param>
+        public WeatherLatestViewModel():this(new WeatherSQLite())
+        {
+        }
+
+        /// <summary>
+        /// コンストラクタ引数あり→引数がなければコンストラクタ引数なしが呼ばれる
+        /// </summary>
+        /// <param name="weather">IWeatherRepository</param>
         public WeatherLatestViewModel(IWeatherRepository weather)
         {
             _weather = weather;

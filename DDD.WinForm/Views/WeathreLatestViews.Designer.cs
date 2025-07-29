@@ -1,6 +1,6 @@
 ﻿namespace DDD.WinForm
 {
-    partial class WeathreLatestViews
+    partial class WeatherLatestViews
     {
         /// <summary>
         ///  Required designer variable.
@@ -47,7 +47,6 @@
             label1.Size = new Size(48, 25);
             label1.TabIndex = 0;
             label1.Text = "地域";
-            label1.Click += label1_Click;
             // 
             // label2
             // 

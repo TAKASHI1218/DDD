@@ -13,6 +13,6 @@ namespace DDD.Domain.Repositories
     /// </summary>
     public interface IWeatherRepository
     {
-        WeatherEntity GetLatest(int areaId);
+        WeatherEntity? GetLatest(int areaId);
     }
 }
