@@ -24,7 +24,6 @@ public class WeatherLatestViewModelTest
         int Condition_2 = 1;
         float Temperature_2 = 22.12f;
 
-
         // Setup‚Å’l‚ðÝ’è
         weathreMock.Setup(x => x.GetLatest(1)).Returns(new WeatherEntity(AreaId_1, DataDate_1, Condition_1, Temperature_1));
         weathreMock.Setup(x => x.GetLatest(2)).Returns(new WeatherEntity(AreaId_2, DataDate_2, Condition_2, Temperature_2));
