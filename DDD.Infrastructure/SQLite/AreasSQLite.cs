@@ -12,30 +12,28 @@ namespace DDD.Infrastructure.SQLite
     public sealed class AreasSQLite : IAreasRepository
     {
         /// <summary>
-        /// エリアのId、エリア名を抽出する
+        /// Areas テーブルの全データを取得し、AreaEntity の読み取り専用リストとして返す
         /// </summary>
-        /// <returns>エリアのId、エリア名のリスト</returns>
+        /// <returns>読み取り専用のAreaEntity</returns>
         public IReadOnlyList<AreaEntity> GetData()
         {
             string sql = @"select AreaId, AreaName from Areas";
 
-            var result = new List<AreaEntity>();
-            using (var connection = new SQLiteConnection(SQLiteHelper.ConnectionString))
-            using (var command = new SQLiteCommand(sql, connection))
-            {
-                connection.Open();
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        result.Add(
-                            new AreaEntity(
-                                Convert.ToInt32(reader["AreaId"]), Convert.ToString(reader["AreaName"])));
-                    }
-                }
-            }
+            // sqlのクエリを実行しAreaEntityを返す
+            return SQLiteHelper.Query<AreaEntity>(sql, CreateEntity);
+        }
 
-            return result;
+        /// <summary>
+        /// SQLiteDataReader の1行を AreaEntity にマッピングしてインスタンスを返す
+        /// </summary>
+        /// <param name="reader">読み取り専用のデータストリーム</param>
+        /// <returns>変換された AreaEntity インスタンス</returns>
+        private AreaEntity CreateEntity(SQLiteDataReader reader)
+        {
+            return new AreaEntity(
+                                Convert.ToInt32(reader["AreaId"]), 
+                                Convert.ToString(reader["AreaName"])
+                                );
         }
     }
 }
