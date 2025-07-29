@@ -28,7 +28,6 @@ namespace DDD.Domain.ValueObjects
         /// </summary>
         public static readonly Condition Rain = new Condition(3);
 
-
         /// <summary>
         /// コンストラクタで状態の値をValueに設定
         /// </summary>
