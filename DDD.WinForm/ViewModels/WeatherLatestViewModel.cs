@@ -1,5 +1,6 @@
 ﻿using DDD.Domain.Repositories;
 using DDD.Infrastructure.SQLite;
+using DDD.WinForm.ViewModels;
 using System.ComponentModel;
 
 namespace DDD.Domain.ViewModels
@@ -7,7 +8,7 @@ namespace DDD.Domain.ViewModels
     /// <summary>
     /// 画面表示のモデルクラス
     /// </summary>
-    public class WeatherLatestViewModel:INotifyPropertyChanged
+    public class WeatherLatestViewModel:ViewModelBase
     {
         /// <summary>
         /// メンバ変数
@@ -44,13 +45,7 @@ namespace DDD.Domain.ViewModels
             get { return _areaIdText; }
             set
             {
-                if (_areaIdText == value)
-                {
-                    return;
-                }
-
-                _areaIdText = value;
-                OnPropertyChanged(nameof(AreaIdText));
+                SetProperty(ref _areaIdText, value);
             }
         }
 
@@ -64,13 +59,7 @@ namespace DDD.Domain.ViewModels
             get { return _datadateText; }
             set
             {
-                if (_datadateText == value)
-                {
-                    return;
-                }
-
-                _datadateText = value;
-                OnPropertyChanged(nameof(DataDateText));
+                SetProperty(ref _datadateText, value);
             }
         }
 
@@ -84,13 +73,7 @@ namespace DDD.Domain.ViewModels
             get { return _conditiontext; }
             set
             {
-                if (_conditiontext == value)
-                {
-                    return;
-                }
-
-                _conditiontext = value;
-                OnPropertyChanged(nameof(ConditionText));
+                SetProperty(ref _conditiontext, value);
             }
         }
 
@@ -104,17 +87,9 @@ namespace DDD.Domain.ViewModels
             get { return _temperaturetext; }
             set
             {
-                if (_temperaturetext == value)
-                {
-                    return;
-                }
-
-                _temperaturetext = value;
-                OnPropertyChanged(nameof(TemperatureText));
+                SetProperty(ref _temperaturetext, value);
             }
         }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
         /// データ取得
@@ -128,19 +103,6 @@ namespace DDD.Domain.ViewModels
                 ConditionText = entity.Condition.DisplayValue;
                 TemperatureText = entity.Temperature.DisplayValueWithUnitSpace;
             }
-
-            // 値が変わったらデータバインドする。（""はすべてのデータに適用される）
-            OnPropertyChanged("");
-        }
-
-        /// <summary>
-        /// PropertyChangedがnullではなかったらInvokeする
-        /// これが呼ばれるとViewとViewModelで同期される(データバインドされる)
-        /// </summary>
-        /// <param name="propertyName"></param>
-        public void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
