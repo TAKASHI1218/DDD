@@ -35,7 +35,7 @@ namespace DDD.Domain.ValueObjects
         {
             get
             {
-                return FloatHelpers.RoundString(Value, DecimalPoint) + " " +  UnitName;   
+                return Value.RoundString(DecimalPoint) + " " + UnitName;  
             }
         }
 
@@ -46,7 +46,7 @@ namespace DDD.Domain.ValueObjects
         {
             get
             {
-                return FloatHelpers.RoundString(Value, DecimalPoint) + UnitName;
+                return Value.RoundString(DecimalPoint) + UnitName;
             }
         }
 
