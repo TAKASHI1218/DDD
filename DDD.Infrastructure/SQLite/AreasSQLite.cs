@@ -35,7 +35,6 @@ namespace DDD.Infrastructure.SQLite
                 }
             }
 
-            // 取得できなかった場合はnullを返す
             return result;
         }
     }
