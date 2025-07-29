@@ -21,12 +21,20 @@ public class WeatherLatestViewModelTest
 
         // SetupÇ≈ílÇê›íË
         weathreMock.Setup(x => x.GetLatest(1)).Returns(new WeatherEntity(AreaId, DataDate, Condition, Temperature));
+        
+        // AreaEntityÇÃMoqçÏê¨
+        var areasMock = new Mock<IAreasRepository>();
+        var areas = new List<AreaEntity>();
+        areas.Add(new AreaEntity(1, "ìåãû"));
+        areas.Add(new AreaEntity(2, "ëÂç„"));
+        areasMock.Setup(x => x.GetData()).Returns(areas);
 
-        var viewModel = new WeatherLatestViewModel(weathreMock.Object);
+        var viewModel = new WeatherLatestViewModel(weathreMock.Object,areasMock.Object);
         Assert.AreEqual("", viewModel.AreaIdText);
         Assert.AreEqual("", viewModel.DataDateText);
         Assert.AreEqual("", viewModel.ConditionText);
         Assert.AreEqual("", viewModel.TemperatureText);
+        Assert.AreEqual(2, viewModel.Areas.Count);
 
         viewModel.AreaIdText = "1";
         viewModel.Search();
@@ -34,6 +42,10 @@ public class WeatherLatestViewModelTest
         Assert.AreEqual("2018/01/01 12:34:56", viewModel.DataDateText);
         Assert.AreEqual("ì‹ÇË", viewModel.ConditionText);
         Assert.AreEqual("12.30 Åé", viewModel.TemperatureText);
+        Assert.AreEqual(1, viewModel.Areas[0].AreaId);
+        Assert.AreEqual("ìåãû", viewModel.Areas[0].AreaName);
+        Assert.AreEqual(2, viewModel.Areas[1].AreaId);
+        Assert.AreEqual("ëÂç„", viewModel.Areas[1].AreaName);
     }
 }
 

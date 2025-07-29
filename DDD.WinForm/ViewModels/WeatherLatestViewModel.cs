@@ -1,4 +1,5 @@
-﻿using DDD.Domain.Repositories;
+﻿using DDD.Domain.Entities;
+using DDD.Domain.Repositories;
 using DDD.Infrastructure.SQLite;
 using DDD.WinForm.ViewModels;
 using System.ComponentModel;
@@ -11,9 +12,11 @@ namespace DDD.Domain.ViewModels
     public class WeatherLatestViewModel:ViewModelBase
     {
         /// <summary>
-        /// メンバ変数
+        /// IWeatherRepository
         /// </summary>
         private IWeatherRepository _weather;
+        
+        IAreasRepository _areas;
 
         /// <summary>
         /// コンストラクタ引数なし
@@ -22,7 +25,7 @@ namespace DDD.Domain.ViewModels
         /// ③ WeatherLatestViewModel(IWeatherRepository weather) に渡される
         /// ④ _weather にインスタンスが格納される
         /// </summary>
-        public WeatherLatestViewModel():this(new WeatherSQLite())
+        public WeatherLatestViewModel():this(new WeatherSQLite(),null)
         {
         }
 
@@ -30,9 +33,16 @@ namespace DDD.Domain.ViewModels
         /// コンストラクタ引数あり→引数がなければコンストラクタ引数なしが呼ばれる
         /// </summary>
         /// <param name="weather">IWeatherRepository</param>
-        public WeatherLatestViewModel(IWeatherRepository weather)
+        public WeatherLatestViewModel(IWeatherRepository weather,IAreasRepository areas)
         {
             _weather = weather;
+            _areas = areas;
+
+            // エリアをAreasに入れていく
+            foreach(var area in _areas.GetData())
+            {
+                Areas.Add(new AreaEntity(area.AreaId, area.AreaName));
+            }
         }
 
         /// <summary>
@@ -90,6 +100,12 @@ namespace DDD.Domain.ViewModels
                 SetProperty(ref _temperaturetext, value);
             }
         }
+
+        /// <summary>
+        /// 地域テーブルを運ぶEntity
+        /// </summary>
+        public BindingList<AreaEntity> Areas { get; set; }
+        = new BindingList<AreaEntity>();
 
         /// <summary>
         /// データ取得と設定
