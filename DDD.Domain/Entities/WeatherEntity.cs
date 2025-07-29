@@ -9,13 +9,13 @@ namespace DDD.Domain.Entities
         /// </summary>
         /// <param name="areaId">エリアID</param>
         /// <param name="dataDate">データ取得日</param>
-        /// <param name="condition">状態(数値)</param>
+        /// <param name="condition">状態</param>
         /// <param name="temperature">温度</param>
         public WeatherEntity(int areaId, DateTime dataDate, int condition, float temperature)
         {
             AreaId = areaId;
             DataDate = dataDate;
-            Condition = condition;
+            Condition =  new Condition(condition);
             Temperature = new Temperature(temperature);
         }
 
@@ -30,9 +30,9 @@ namespace DDD.Domain.Entities
         public DateTime DataDate { get; }
 
         /// <summary>
-        /// 状態(数値)
+        /// 状態
         /// </summary>
-        public int Condition { get; }
+        public Condition Condition { get; }
 
         /// <summary>
         /// 温度

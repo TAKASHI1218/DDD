@@ -40,7 +40,7 @@ namespace DDD.Domain.ViewModels
         public string? DataDateText { get; set; } = string.Empty;
 
         /// <summary>
-        /// 状態(数値)(表示)
+        /// 状態(表示)
         /// </summary>
         public string? ConditionText { get; set; } = string.Empty;
 
@@ -58,7 +58,7 @@ namespace DDD.Domain.ViewModels
             if (entity != null)
             {
                 DataDateText = entity.DataDate.ToString();
-                ConditionText = entity.Condition.ToString();
+                ConditionText = entity.Condition.DisplayValue;
                 TemperatureText = entity.Temperature.DisplayValueWithUnitSpace;
             }
         }
