@@ -31,7 +31,7 @@ namespace DDD.Domain.ValueObjects
         /// <summary>
         /// 温度表示(スペースあり)
         /// </summary>
-        public string? DisplayValueWithUnitSpace
+        public string DisplayValueWithUnitSpace
         {
             get
             {
@@ -42,7 +42,7 @@ namespace DDD.Domain.ValueObjects
         /// <summary>
         /// 温度表示(スペースなし)
         /// </summary>
-        public string? DisplayValueWithUnit
+        public string DisplayValueWithUnit
         {
             get
             {

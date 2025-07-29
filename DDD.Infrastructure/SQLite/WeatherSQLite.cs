@@ -27,7 +27,7 @@ namespace DDD.Infrastructure.SQLite
                     while (reader.Read())
                     {
                         return new WeatherEntity(
-                            Convert.ToInt32(reader["AreaId"]),
+                            areaId,
                             Convert.ToDateTime(reader["DataDate"]),
                             Convert.ToInt32(reader["Condition"]),
                             Convert.ToSingle(reader["Temperature"])

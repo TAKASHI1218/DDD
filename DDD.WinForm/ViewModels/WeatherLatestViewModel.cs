@@ -1,12 +1,13 @@
 ﻿using DDD.Domain.Repositories;
 using DDD.Infrastructure.SQLite;
+using System.ComponentModel;
 
 namespace DDD.Domain.ViewModels
 {
     /// <summary>
     /// 画面表示のモデルクラス
     /// </summary>
-    public class WeatherLatestViewModel
+    public class WeatherLatestViewModel:INotifyPropertyChanged
     {
         /// <summary>
         /// メンバ変数
@@ -36,22 +37,84 @@ namespace DDD.Domain.ViewModels
         /// <summary>
         /// エリアID(表示)
         /// </summary>
-        public string? AreaIdText { get; set; } = string.Empty;
+        private string _areaIdText = string.Empty;
+
+        public string AreaIdText
+        {
+            get { return _areaIdText; }
+            set
+            {
+                if (_areaIdText == value)
+                {
+                    return;
+                }
+
+                _areaIdText = value;
+                OnPropertyChanged(nameof(AreaIdText));
+            }
+        }
 
         /// <summary>
         /// データ取得日(表示)
         /// </summary>
-        public string? DataDateText { get; set; } = string.Empty;
+        private string _datadateText = string.Empty;
+
+        public string DataDateText
+        {
+            get { return _datadateText; }
+            set
+            {
+                if (_datadateText == value)
+                {
+                    return;
+                }
+
+                _datadateText = value;
+                OnPropertyChanged(nameof(DataDateText));
+            }
+        }
 
         /// <summary>
         /// 状態(表示)
         /// </summary>
-        public string? ConditionText { get; set; } = string.Empty;
+        private string _conditiontext = string.Empty;
+
+        public string ConditionText
+        {
+            get { return _conditiontext; }
+            set
+            {
+                if (_conditiontext == value)
+                {
+                    return;
+                }
+
+                _conditiontext = value;
+                OnPropertyChanged(nameof(ConditionText));
+            }
+        }
 
         /// <summary>
         /// 温度(表示)
         /// </summary>
-        public string? TemperatureText { get; set; } = string.Empty;
+        private string _temperaturetext = string.Empty;
+
+        public string TemperatureText
+        {
+            get { return _temperaturetext; }
+            set
+            {
+                if (_temperaturetext == value)
+                {
+                    return;
+                }
+
+                _temperaturetext = value;
+                OnPropertyChanged(nameof(TemperatureText));
+            }
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
         /// データ取得
@@ -65,6 +128,19 @@ namespace DDD.Domain.ViewModels
                 ConditionText = entity.Condition.DisplayValue;
                 TemperatureText = entity.Temperature.DisplayValueWithUnitSpace;
             }
+
+            // 値が変わったらデータバインドする。（""はすべてのデータに適用される）
+            OnPropertyChanged("");
+        }
+
+        /// <summary>
+        /// PropertyChangedがnullではなかったらInvokeする
+        /// これが呼ばれるとViewとViewModelで同期される(データバインドされる)
+        /// </summary>
+        /// <param name="propertyName"></param>
+        public void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
