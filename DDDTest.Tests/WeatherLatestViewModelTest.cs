@@ -1,11 +1,7 @@
 using DDD.Domain.Entities;
 using DDD.Domain.Repositories;
 using DDD.Domain.ViewModels;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
-using System.Data;
-
 namespace DDDTest.Tests;
 
 [TestClass]
