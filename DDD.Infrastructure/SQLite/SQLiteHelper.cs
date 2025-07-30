@@ -141,5 +141,37 @@ namespace DDD.Infrastructure.SQLite
 
         // -- SQLのオブジェクトを返す処理 End -- // 
 
+        // -- SQL登録処理 Start -- // 
+
+        /// <summary>
+        /// updateがなかったらinsertを実行する
+        /// </summary>
+        /// <param name="insert">Insert文</param>
+        /// <param name="update">update文</param>
+        /// <param name="parameters">パラメータ</param>
+        internal static void Execute(
+            string insert,
+            string update,
+            SQLiteParameter[] parameters)
+        {
+            using (var connection =
+            new SQLiteConnection(SQLiteHelper.ConnectionString))
+            using (var command = new SQLiteCommand(update, connection))
+            {
+                connection.Open();
+
+                if (parameters != null)
+                {
+                    command.Parameters.AddRange(parameters);
+                }
+
+                if (command.ExecuteNonQuery() < 1)
+                {
+                    command.CommandText = insert;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+        // -- SQL登録処理 End -- // 
     }
 }

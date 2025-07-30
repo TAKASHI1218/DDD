@@ -103,6 +103,8 @@
             // 
             // DateTimeTextBox
             // 
+            DateTimeTextBox.CustomFormat = "yyyy/MM//dd HH:mm:ss";
+            DateTimeTextBox.Format = DateTimePickerFormat.Custom;
             DateTimeTextBox.Location = new Point(142, 155);
             DateTimeTextBox.Name = "DateTimeTextBox";
             DateTimeTextBox.Size = new Size(300, 31);
