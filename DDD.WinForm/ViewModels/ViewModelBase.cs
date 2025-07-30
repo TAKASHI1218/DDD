@@ -42,5 +42,16 @@ namespace DDD.WinForm.ViewModels
 
             return true;
         }
+
+        /// <summary>
+        /// 現在日時を取得
+        /// ※virtualは基底クラスで定義されたメソッドやプロパティを、
+        /// 派生クラスでオーバーライド（上書き）可能にするための修飾子
+        /// </summary>
+        /// <returns>現在日時</returns>
+        public virtual DateTime GetDateTime()
+        {
+            return DateTime.Now;
+        }
     }
 }
