@@ -38,6 +38,7 @@
             LatestButton = new Button();
             AreasComboBox = new ComboBox();
             button1 = new Button();
+            button2 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -131,11 +132,22 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // button2
+            // 
+            button2.Location = new Point(229, 27);
+            button2.Name = "button2";
+            button2.Size = new Size(112, 34);
+            button2.TabIndex = 11;
+            button2.Text = "追加";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // WeatherLatestViews
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(AreasComboBox);
             Controls.Add(LatestButton);
@@ -165,5 +177,6 @@
         private Button LatestButton;
         private ComboBox AreasComboBox;
         private Button button1;
+        private Button button2;
     }
 }

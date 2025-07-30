@@ -42,6 +42,7 @@ public class WeatherSaveViewModelTest
             Convert.ToDateTime("2025/01/01 12:34:56"));
         viewModel.SelectedCondition.Is(1);
         viewModel.TemperatureText.Is("");
+        viewModel.TemperatureUnitName.Is("Åé");
         viewModel.Areas.Count.Is(2);
         viewModel.Conditions.Count.Is(4);
         // -- èâä˙íl -- End
