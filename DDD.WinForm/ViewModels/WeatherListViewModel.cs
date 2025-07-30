@@ -1,4 +1,5 @@
 ﻿using DDD.Domain.Repositories;
+using DDD.Infrastructure.SQLite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,17 @@ namespace DDD.WinForm.ViewModels
         private IWeatherRepository _weather;
 
         /// <summary>
-        /// コンストラクタでWeatherListViewModelWeatherに設定する
+        /// コンストラクタ
+        /// 引数なしの場合はWeatherSQLiteにつながる
+        /// ※引数ありの場合はpublic WeatherListViewModel(IWeatherRepository weather)
+        /// </summary>
+        public WeatherListViewModel():this(new WeatherSQLite())
+        {
+        }
+
+        /// <summary>
+        /// コンストラクタ
+        /// WeatherListViewModelWeatherに設定する
         /// </summary>
         /// <param name="weather"></param>
         public WeatherListViewModel(IWeatherRepository weather)

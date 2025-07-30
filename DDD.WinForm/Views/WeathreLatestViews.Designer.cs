@@ -37,12 +37,13 @@
             TemperatureLabel = new Label();
             LatestButton = new Button();
             AreasComboBox = new ComboBox();
+            button1 = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(77, 68);
+            label1.Location = new Point(86, 88);
             label1.Name = "label1";
             label1.Size = new Size(48, 25);
             label1.TabIndex = 0;
@@ -51,7 +52,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(77, 119);
+            label2.Location = new Point(86, 139);
             label2.Name = "label2";
             label2.Size = new Size(48, 25);
             label2.TabIndex = 1;
@@ -60,7 +61,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(77, 174);
+            label3.Location = new Point(86, 194);
             label3.Name = "label3";
             label3.Size = new Size(48, 25);
             label3.TabIndex = 2;
@@ -69,7 +70,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(77, 227);
+            label4.Location = new Point(86, 247);
             label4.Name = "label4";
             label4.Size = new Size(48, 25);
             label4.TabIndex = 3;
@@ -78,7 +79,7 @@
             // DataDateLabel
             // 
             DataDateLabel.AutoSize = true;
-            DataDateLabel.Location = new Point(165, 119);
+            DataDateLabel.Location = new Point(174, 139);
             DataDateLabel.Name = "DataDateLabel";
             DataDateLabel.Size = new Size(59, 25);
             DataDateLabel.TabIndex = 4;
@@ -87,7 +88,7 @@
             // ConditionLabel
             // 
             ConditionLabel.AutoSize = true;
-            ConditionLabel.Location = new Point(165, 174);
+            ConditionLabel.Location = new Point(174, 194);
             ConditionLabel.Name = "ConditionLabel";
             ConditionLabel.Size = new Size(59, 25);
             ConditionLabel.TabIndex = 5;
@@ -96,7 +97,7 @@
             // TemperatureLabel
             // 
             TemperatureLabel.AutoSize = true;
-            TemperatureLabel.Location = new Point(165, 227);
+            TemperatureLabel.Location = new Point(174, 247);
             TemperatureLabel.Name = "TemperatureLabel";
             TemperatureLabel.Size = new Size(59, 25);
             TemperatureLabel.TabIndex = 6;
@@ -104,7 +105,7 @@
             // 
             // LatestButton
             // 
-            LatestButton.Location = new Point(378, 68);
+            LatestButton.Location = new Point(387, 88);
             LatestButton.Name = "LatestButton";
             LatestButton.Size = new Size(112, 34);
             LatestButton.TabIndex = 8;
@@ -115,16 +116,27 @@
             // AreasComboBox
             // 
             AreasComboBox.FormattingEnabled = true;
-            AreasComboBox.Location = new Point(165, 65);
+            AreasComboBox.Location = new Point(174, 85);
             AreasComboBox.Name = "AreasComboBox";
             AreasComboBox.Size = new Size(182, 33);
             AreasComboBox.TabIndex = 9;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(86, 27);
+            button1.Name = "button1";
+            button1.Size = new Size(112, 34);
+            button1.TabIndex = 10;
+            button1.Text = "List";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // WeatherLatestViews
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
             Controls.Add(AreasComboBox);
             Controls.Add(LatestButton);
             Controls.Add(TemperatureLabel);
@@ -152,5 +164,6 @@
         private Label TemperatureLabel;
         private Button LatestButton;
         private ComboBox AreasComboBox;
+        private Button button1;
     }
 }

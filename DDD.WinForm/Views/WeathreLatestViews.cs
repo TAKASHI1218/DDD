@@ -1,12 +1,13 @@
 
 using DDD.Domain.Entities;
 using DDD.Domain.ViewModels;
+using DDD.WinForm.Views;
 
 namespace DDD.WinForm
 {
     public partial class WeatherLatestViews : Form
     {
-        private WeatherLatestViewModel _viewModel 
+        private WeatherLatestViewModel _viewModel
             = new WeatherLatestViewModel();
 
 
@@ -33,9 +34,27 @@ namespace DDD.WinForm
 
         }
 
+        /// <summary>
+        /// ボタン桜花で指定エリアのデータを表示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LatestButton_Click(object sender, EventArgs e)
         {
             _viewModel.Search();
+        }
+
+        /// <summary>
+        /// ボダン押下で一覧画面を表示
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (var f = new WeatherListView())
+            {
+                f.ShowDialog();
+            }
         }
     }
 }
