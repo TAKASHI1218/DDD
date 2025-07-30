@@ -1,4 +1,5 @@
 ﻿using DDD.Domain.Entities;
+using DDD.Domain.Exceptions;
 using DDD.Domain.Repositories;
 using DDD.Domain.ValueObjects;
 using System;
@@ -60,5 +61,18 @@ namespace DDD.WinForm.ViewModels
         /// </summary>
         public BindingList<Condition> Conditions { get; set; }
          = new BindingList<Condition>(Condition.ToList());
+
+        /// <summary>
+        /// 保存処理
+        /// </summary>
+        /// <exception cref="InputException">例外</exception>
+        public void Save()
+        {
+            // AreaIdがnullならInputExceptionを発生させる
+            if(SelectedAreaId == null)
+            {
+                throw new InputException("エリアを選択してください");
+            }
+        }
     }
 }
