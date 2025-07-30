@@ -14,6 +14,9 @@ public class WeatherSaveViewModelTest
     public void 天気登録シナリオ()
     {
         // -- 準備-- Start
+        // WeathreMockの作成
+        var weatherMock = new Mock<IWeatherRepository>();
+
         // AreaEntityのMoq作成
         var areasMock = new Mock<IAreasRepository>();
         var areas = new List<AreaEntity>();
@@ -23,7 +26,8 @@ public class WeatherSaveViewModelTest
 
         // viewmodel自体をモック化
         // viewmodelの中のvirtualな関数を上書きできる
-        var viewModelMock = new Mock<WeatherSaveViewModel>(areasMock.Object);
+        var viewModelMock = new Mock<WeatherSaveViewModel>
+            (weatherMock.Object,areasMock.Object);
         // GetDateTimeはvirtualなので上書き
         viewModelMock.Setup(x => x.GetDateTime()).Returns(
             Convert.ToDateTime("2025/01/01 12:34:56"));
@@ -45,10 +49,27 @@ public class WeatherSaveViewModelTest
         // -- 入力チェック -- Start
         var ex = AssertEx.Throws<InputException>(() => viewModel.Save());
         ex.Message.Is("エリアを選択してください");
-
         viewModel.SelectedAreaId = 2;
+
         ex = AssertEx.Throws<InputException>(() => viewModel.Save());
         ex.Message.Is("温度の入力に誤りがあります");
+        viewModel.TemperatureText = "12.345";
+
         // -- 入力チェック -- End
+
+        // -- 保存チェック -- Start
+        weatherMock.Setup(x => x.Save(It.IsAny<WeatherEntity>())).
+            Callback<WeatherEntity>(saveValue =>
+            {
+                saveValue.AreaId.Value.Is(2);
+                saveValue.DataDate.Is(Convert.ToDateTime("2025/01/01 12:34:56"));
+                saveValue.Condition.Value.Is(1);
+                saveValue.Temperature.Value.Is(12.345f);
+            });
+
+        viewModel.Save();
+        // テスト漏れ検知
+        weatherMock.VerifyAll();
+        // -- 保存チェック -- End
     }
 }

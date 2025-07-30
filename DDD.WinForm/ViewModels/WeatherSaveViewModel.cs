@@ -10,12 +10,17 @@ namespace DDD.WinForm.ViewModels
 {
     public class WeatherSaveViewModel : ViewModelBase
     {
+        private IWeatherRepository _weather;
         private IAreasRepository _areas;
+
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public WeatherSaveViewModel(IAreasRepository areas)
+        public WeatherSaveViewModel(
+            IWeatherRepository weather,
+            IAreasRepository areas)
         {
+            _weather = weather;
             _areas = areas;
             DataDateVlaue = GetDateTime();
             SelectedCondition = Condition.Sunny.Value;
@@ -74,6 +79,16 @@ namespace DDD.WinForm.ViewModels
 
             // Temperatureのチェック
             var temperature = Guard.IsFloat(TemperatureText, "温度の入力に誤りがあります");
+
+            // Entityを作ってSaveに渡す
+            var entity = new WeatherEntity(
+                Convert.ToInt32(SelectedAreaId),
+                DataDateVlaue,
+                Convert.ToInt32(SelectedCondition),
+                temperature
+                );
+
+            _weather.Save(entity); // →ここ以降はSQLiteの領域
         }
     }
 }
