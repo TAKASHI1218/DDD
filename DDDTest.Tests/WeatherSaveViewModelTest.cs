@@ -42,9 +42,13 @@ public class WeatherSaveViewModelTest
         viewModel.Conditions.Count.Is(4);
         // -- 初期値 -- End
 
-        // -- 保存ボタン押下 -- Start
-        // 例外のテスト
+        // -- 入力チェック -- Start
         var ex = AssertEx.Throws<InputException>(() => viewModel.Save());
         ex.Message.Is("エリアを選択してください");
+
+        viewModel.SelectedAreaId = 2;
+        ex = AssertEx.Throws<InputException>(() => viewModel.Save());
+        ex.Message.Is("温度の入力に誤りがあります");
+        // -- 入力チェック -- End
     }
 }

@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace DDD.WinForm.ViewModels
 {
-    public class WeatherSaveViewModel: ViewModelBase
+    public class WeatherSaveViewModel : ViewModelBase
     {
         private IAreasRepository _areas;
         /// <summary>
@@ -69,11 +69,11 @@ namespace DDD.WinForm.ViewModels
         /// <exception cref="InputException">例外</exception>
         public void Save()
         {
-            // AreaIdがnullならInputExceptionを発生させる
-            if(SelectedAreaId == null)
-            {
-                Guard.IsNull(SelectedAreaId, "エリアを選択してください");
-            }
+            // SeletedAreaIdのチェック
+            Guard.IsNull(SelectedAreaId, "エリアを選択してください");
+
+            // Temperatureのチェック
+            var temperature = Guard.IsFloat(TemperatureText, "温度の入力に誤りがあります");
         }
     }
 }
